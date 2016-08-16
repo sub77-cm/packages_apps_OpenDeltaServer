@@ -17,21 +17,23 @@ fi
 
 # ------ CONFIGURATION ------
 
-HOME=/and
-DU=cm13
+HOME=/and/cm13
+ROM=CyanogenMod
+UPLOAD1=/mnt/edu
+UPLOAD2=/mnt/afh
 
 BIN_JAVA=java
-BIN_MINSIGNAPK=$HOME/$DU/delta/minsignapk.jar
-BIN_XDELTA=$HOME/$DU/delta/xdelta3
-BIN_ZIPADJUST=$HOME/$DU/delta/zipadjust
+BIN_MINSIGNAPK=$HOME/delta/minsignapk.jar
+BIN_XDELTA=$HOME/delta/xdelta3
+BIN_ZIPADJUST=$HOME/delta/zipadjust
 
 FILE_MATCH=cm-*.zip
 FILE_MATCH2=cm-*.md5sum
-PATH_CURRENT=$HOME/$DU/out/target/product/$DEVICE
-PATH_LAST=$HOME/$DU/delta/last/$DEVICE
+PATH_CURRENT=$HOME/out/target/product/$DEVICE
+PATH_LAST=$HOME/delta/last/$DEVICE
 
-KEY_X509=$HOME/$DU/delta/certs/platform.x509.pem
-KEY_PK8=$HOME/$DU/delta/certs/platform.pk8
+KEY_X509=$HOME/delta/certs/platform.x509.pem
+KEY_PK8=$HOME/delta/certs/platform.pk8
 
 # ------ PROCESS ------
 
@@ -182,20 +184,25 @@ mkdir publish >/dev/null 2>/dev/null
 mkdir publish/$DEVICE >/dev/null 2>/dev/null
 cp out/* publish/$DEVICE/.
 
-cp out/* /mnt/edu/CyanogenMod/delta/$DEVICE/.
+cp out/* $UPLOAD1/$ROM/delta/$DEVICE/.
+cp out/* $UPLOAD2/$ROM/delta/$DEVICE/.
 
 rm -rf work
 rm -rf out
 
 rm -rf $PATH_LAST/*
 mkdir -p $PATH_LAST
+
+# LOCAL
 cp $PATH_CURRENT/$FILE_CURRENT $PATH_LAST/$FILE_CURRENT
 cp $PATH_CURRENT/$FILE_CURRENT2 $PATH_LAST/$FILE_CURRENT2
 
-cp $PATH_CURRENT/$FILE_CURRENT /mnt/edu/CyanogenMod/full/$DEVICE/$FILE_CURRENT
-cp $PATH_CURRENT/$FILE_CURRENT2 /mnt/edu/CyanogenMod/full/$DEVICE/$FILE_CURRENT2
+# WWW
+cp $PATH_CURRENT/$FILE_CURRENT $UPLOAD1/$ROM/full/$DEVICE/$FILE_CURRENT
+cp $PATH_CURRENT/$FILE_CURRENT2 $UPLOAD1/$ROM/full/$DEVICE/$FILE_CURRENT2
 
-
-
+# AFH
+cp $PATH_CURRENT/$FILE_CURRENT $UPLOAD2/$ROM/full/$DEVICE/$FILE_CURRENT
+cp $PATH_CURRENT/$FILE_CURRENT2 $UPLOAD2/$ROM/full/$DEVICE/$FILE_CURRENT2
 
 exit 0
