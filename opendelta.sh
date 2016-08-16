@@ -17,18 +17,16 @@ fi
 
 # ------ CONFIGURATION ------
 
-HOME=/and/roms
-RR=android/generic/resurrection-6.0
-OP2=android/oneplus2/rr-6.0
-DU=du
+HOME=/and
+DU=cm13
 
 BIN_JAVA=java
 BIN_MINSIGNAPK=$HOME/$DU/delta/minsignapk.jar
 BIN_XDELTA=$HOME/$DU/delta/xdelta3
 BIN_ZIPADJUST=$HOME/$DU/delta/zipadjust
 
-FILE_MATCH=DU_*.zip
-FILE_MATCH2=DU_*.md5sum
+FILE_MATCH=cm-*.zip
+FILE_MATCH2=cm-*.md5sum
 PATH_CURRENT=$HOME/$DU/out/target/product/$DEVICE
 PATH_LAST=$HOME/$DU/delta/last/$DEVICE
 
@@ -184,7 +182,7 @@ mkdir publish >/dev/null 2>/dev/null
 mkdir publish/$DEVICE >/dev/null 2>/dev/null
 cp out/* publish/$DEVICE/.
 
-cp out/* /mnt/edu/DirtyUnicorns/delta/$DEVICE/.
+cp out/* /mnt/edu/CyanogenMod/delta/$DEVICE/.
 
 rm -rf work
 rm -rf out
@@ -194,8 +192,8 @@ mkdir -p $PATH_LAST
 cp $PATH_CURRENT/$FILE_CURRENT $PATH_LAST/$FILE_CURRENT
 cp $PATH_CURRENT/$FILE_CURRENT2 $PATH_LAST/$FILE_CURRENT2
 
-cp $PATH_CURRENT/$FILE_CURRENT /mnt/edu/DirtyUnicorns/full/$DEVICE/$FILE_CURRENT
-cp $PATH_CURRENT/$FILE_CURRENT2 /mnt/edu/DirtyUnicorns/full/$DEVICE/$FILE_CURRENT2
+cp $PATH_CURRENT/$FILE_CURRENT /mnt/edu/CyanogenMod/full/$DEVICE/$FILE_CURRENT
+cp $PATH_CURRENT/$FILE_CURRENT2 /mnt/edu/CyanogenMod/full/$DEVICE/$FILE_CURRENT2
 
 
 
